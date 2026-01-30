@@ -1,4 +1,4 @@
-import { Bot, Linkedin, Twitter, Github } from "lucide-react";
+import { Bot, Linkedin, Instagram, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -38,8 +38,8 @@ const Footer = () => {
             <div className="flex gap-3">
               {[
                 { icon: Linkedin, href: '#' },
-                { icon: Twitter, href: '#' },
-                { icon: Github, href: '#' },
+                { icon: Instagram, href: '#' },
+                { icon: MessageCircle, href: '#' },
               ].map((social, index) => (
                 <a 
                   key={index} 
