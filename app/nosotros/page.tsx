@@ -114,12 +114,20 @@ export default function Nosotros() {
                     { number: "IA", label: "Última Generación" },
                     { number: "0%", label: "Burocracia" },
                   ].map((stat, index) => (
-                    <div key={index} className="neu-card-sm p-6 animate-fade-in" style={{ animationDelay: `${0.4 + index * 0.1}s` }}>
-                      <div className="font-display text-4xl font-bold text-gradient-navy mb-2">
-                        {stat.number}
-                      </div>
-                      <div className="text-sm text-muted-foreground font-medium">
-                        {stat.label}
+                    <div 
+                      key={index} 
+                      className="stat-card-neu relative p-6 animate-fade-in group cursor-pointer overflow-hidden rounded-2xl transition-all duration-700 hover:scale-125 hover:shadow-2xl"
+                      style={{ 
+                        animationDelay: `${0.4 + index * 0.1}s`,
+                      }}
+                    >
+                      <div className="relative z-10">
+                        <div className="font-display text-4xl font-bold mb-2 transition-all duration-700 group-hover:scale-125 text-gradient-navy group-hover:glow-blue">
+                          {stat.number}
+                        </div>
+                        <div className="text-sm font-medium transition-all duration-700 text-muted-foreground group-hover:text-primary group-hover:font-semibold group-hover:scale-110 group-hover:text-base">
+                          {stat.label}
+                        </div>
                       </div>
                     </div>
                   ))}

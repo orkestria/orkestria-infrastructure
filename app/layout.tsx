@@ -20,6 +20,11 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "OrkestrIA - Consultoría IT & Automatización con IA",
   description: "Orquestamos soluciones tecnológicas inteligentes para automatizar procesos, optimizar operaciones y potenciar el crecimiento de tu negocio.",
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({

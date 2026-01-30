@@ -197,6 +197,71 @@
   .animate-pulse-glow {
     animation: pulse-glow 3s ease-in-out infinite;
   }
+
+  /* Water wave animations */
+  @keyframes wave {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.1) rotate(5deg);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+  }
+
+  .water-wave {
+    animation: wave 2s ease-in-out infinite;
+    transform-origin: center center;
+  }
+
+  .water-wave-reverse {
+    animation: wave 2.5s ease-in-out infinite reverse;
+    animation-delay: 0.3s;
+  }
+
+  .water-ripple {
+    animation: ripple 3s ease-in-out infinite;
+  }
+
+  /* Stat card neomorfismo */
+  .stat-card-neu {
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1), -8px -8px 16px rgba(255, 255, 255, 0.8);
+    background: linear-gradient(145deg, #f0f0f3, #ffffff);
+  }
+
+  .neu-shadow-blue {
+    box-shadow: inset 6px 6px 12px rgba(59, 130, 246, 0.2), 
+                inset -6px -6px 12px rgba(147, 197, 253, 0.3), 
+                12px 12px 24px rgba(59, 130, 246, 0.15), 
+                -12px -12px 24px rgba(255, 255, 255, 0.9);
+  }
+
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-blue {
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+  }
 }
 
 @layer utilities {
