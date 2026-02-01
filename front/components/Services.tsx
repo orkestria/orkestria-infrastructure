@@ -54,11 +54,11 @@ const Services = () => {
           {services.map((service, index) => (
             <div 
               key={index}
-              className="neu-card p-8 group hover:-translate-y-2 transition-all duration-300 animate-fade-in"
+              className="neu-card p-8 animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Icon */}
-              <div className="neu-pressed w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:shadow-neu-sm transition-all duration-300">
+              <div className="neu-pressed w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
                 <service.icon className="w-8 h-8 text-primary" />
               </div>
 
