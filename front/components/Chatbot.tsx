@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Send, Bot, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,9 +14,10 @@ interface Message {
 interface ChatbotProps {
   isOpen: boolean;
   onClose: () => void;
+  initialMessage?: string;
 }
 
-const Chatbot = ({ isOpen, onClose }: ChatbotProps) => {
+const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -25,6 +26,18 @@ const Chatbot = ({ isOpen, onClose }: ChatbotProps) => {
     },
   ]);
   const [inputValue, setInputValue] = useState("");
+
+  // Agregar mensaje inicial del backend cuando se recibe
+  useEffect(() => {
+    if (initialMessage && isOpen) {
+      const backendMessage: Message = {
+        id: Date.now(),
+        text: initialMessage,
+        sender: "bot",
+      };
+      setMessages(prev => [...prev, backendMessage]);
+    }
+  }, [initialMessage, isOpen]);
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;

@@ -2,11 +2,39 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, Phone } from "lucide-react";
-import Chatbot from "@/components/Chatbot";
+import { ArrowRight, Mail, Phone, Bot } from "lucide-react";
 
 const CTA = () => {
-  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const [showResponse, setShowResponse] = useState(false);
+  const [companyInfo, setCompanyInfo] = useState("");
+  const [backendResponse, setBackendResponse] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleContinue = async () => {
+    if (!companyInfo.trim()) return;
+    
+    setIsLoading(true);
+    try {
+      const response = await fetch('http://localhost:3001/api/asistente', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ companyInfo }),
+      });
+      
+      const data = await response.json();
+      setBackendResponse(data.message);
+      setShowResponse(true);
+    } catch (error) {
+      console.error('Error al conectar con el backend:', error);
+      setBackendResponse('Error al conectar con el servidor.');
+      setShowResponse(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <section id="nosotros" className="py-24 px-6">
       <div className="container mx-auto">
@@ -24,13 +52,15 @@ const CTA = () => {
               Agenda una consulta gratuita con nuestros expertos y descubre cómo la IA puede impulsar tu negocio.
             </p>
 
-            {/* Formulario animado */}
+            {/* Formulario */}
             <div className="neu-card p-8 mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="mb-6">
                 <label className="block text-lg font-display font-semibold mb-4 text-foreground animate-fade-in" style={{ animationDelay: '0.3s' }}>
                   ¿Qué hace tu empresa? ✨
                 </label>
                 <textarea
+                  value={companyInfo}
+                  onChange={(e) => setCompanyInfo(e.target.value)}
                   placeholder="Cuéntanos sobre tu empresa y cómo podemos ayudarte..."
                   className="w-full p-4 rounded-2xl border-2 border-border bg-background focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-h-[120px] resize-none shadow-neu-sm hover:shadow-neu animate-fade-in"
                   style={{ animationDelay: '0.4s' }}
@@ -40,14 +70,30 @@ const CTA = () => {
               <Button 
                 variant="hero" 
                 size="xl"
-                onClick={() => setIsChatbotOpen(true)}
+                onClick={handleContinue}
+                disabled={isLoading}
                 className="w-full sm:w-auto animate-fade-in"
                 style={{ animationDelay: '0.5s' }}
               >
-                Continuar con el Asistente
+                {isLoading ? 'Conectando...' : 'Continuar con el Asistente'}
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </div>
+
+            {/* Respuesta del Backend */}
+            {showResponse && (
+              <div className="neu-card p-6 mb-8 animate-fade-in">
+                <div className="flex items-start gap-3">
+                  <div className="neu-card-sm p-2 bg-primary/10 flex-shrink-0">
+                    <Bot className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-bold text-lg mb-2">Respuesta del Asistente</h3>
+                    <p className="text-muted-foreground leading-relaxed">{backendResponse}</p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Contact Info */}
             <div className="flex flex-col sm:flex-row gap-8 justify-center items-center text-muted-foreground">
@@ -67,9 +113,6 @@ const CTA = () => {
           </div>
         </div>
       </div>
-
-      {/* Chatbot */}
-      <Chatbot isOpen={isChatbotOpen} onClose={() => setIsChatbotOpen(false)} />
     </section>
   );
 };
