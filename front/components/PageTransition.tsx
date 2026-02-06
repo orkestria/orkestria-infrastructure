@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 
-export default function PageTransition({ children }: { children: React.ReactNode }) {
+export default function PageTransition({ children }: Readonly<{ children: React.ReactNode }>) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(false);
   const [displayChildren, setDisplayChildren] = useState(children);

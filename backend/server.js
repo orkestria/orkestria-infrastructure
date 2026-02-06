@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const OpenAI = require('openai');
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 // Cargar variables de entorno desde .env
 require('dotenv').config();
 

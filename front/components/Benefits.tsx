@@ -42,11 +42,10 @@ const Benefits = () => {
               <span className="text-gradient-navy">OrkestrIA</span>?
             </h2>
 
-            {benefits.map((benefit, index) => (
-              <div 
-                key={index}
+            {benefits.map((benefit) => (
+              <div
+                key={benefit.title}
                 className="neu-card p-6 flex gap-5 animate-fade-in"
-                style={{ animationDelay: `${index * 0.15}s` }}
               >
                 <div className="gradient-navy w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
                   <benefit.icon className="w-7 h-7 text-primary-foreground" />
@@ -70,8 +69,8 @@ const Benefits = () => {
             </h3>
             
             <div className="space-y-5">
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-4">
+              {features.map((feature) => (
+                <div key={feature} className="flex items-center gap-4">
                   <div className="neu-pressed w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Check className="w-4 h-4 text-accent" />
                   </div>

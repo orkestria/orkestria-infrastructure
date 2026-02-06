@@ -56,8 +56,8 @@ const Hero = () => {
               { value: '50+', label: 'Empresas' },
               { value: '95%', label: 'Satisfacción' },
               { value: '24/7', label: 'Soporte' },
-            ].map((stat, index) => (
-              <div key={index} className="neu-card-sm p-6 text-center">
+            ].map((stat) => (
+              <div key={stat.label} className="neu-card-sm p-6 text-center">
                 <div className="font-display text-3xl md:text-4xl font-bold text-gradient-navy mb-1">
                   {stat.value}
                 </div>

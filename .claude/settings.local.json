@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e:*)",
+      "Bash(powershell -Command \"Get-ChildItem -Filter ''*.tsx'' | ForEach-Object { \\(Get-Content $_FullName -Raw\\) -replace ''React\\\\.ElementRef'', ''React.ComponentRef'' | Set-Content $_FullName -NoNewline }\")"
+    ]
+  }
+}

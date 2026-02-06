@@ -76,11 +76,10 @@ export default function Nosotros() {
                   title: "Excelencia",
                   description: "Buscamos la máxima calidad en nuestras soluciones",
                 },
-              ].map((value, index) => (
+              ].map((value) => (
                 <div
-                  key={index}
+                  key={value.title}
                   className="neu-card p-6 text-center animate-fade-in hover:-translate-y-2 transition-all duration-300"
-                  style={{ animationDelay: `${0.3 + index * 0.1}s` }}
                 >
                   <div className="neu-pressed w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <value.icon className="w-8 h-8 text-primary" />
@@ -113,13 +112,10 @@ export default function Nosotros() {
                     { number: "100%", label: "Soluciones Personalizadas" },
                     { number: "IA", label: "Última Generación" },
                     { number: "0%", label: "Burocracia" },
-                  ].map((stat, index) => (
-                    <div 
-                      key={index} 
+                  ].map((stat) => (
+                    <div
+                      key={stat.label}
                       className="stat-card-neu relative p-6 animate-fade-in group cursor-pointer overflow-hidden rounded-2xl transition-all duration-700 hover:scale-125 hover:shadow-2xl"
-                      style={{ 
-                        animationDelay: `${0.4 + index * 0.1}s`,
-                      }}
                     >
                       <div className="relative z-10">
                         <div className="font-display text-4xl font-bold mb-2 transition-all duration-700 group-hover:scale-125 text-gradient-navy group-hover:glow-blue">

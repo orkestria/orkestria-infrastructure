@@ -85,8 +85,10 @@ const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
   return (
     <>
       {/* Overlay */}
-      <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 animate-fade-in"
+      <button
+        type="button"
+        aria-label="Cerrar chat"
+        className="fixed inset-0 w-full h-full bg-black/50 backdrop-blur-sm z-50 animate-fade-in border-none cursor-default"
         onClick={onClose}
       />
 
@@ -151,7 +153,7 @@ const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
               <Input
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
                 placeholder="Escribe tu mensaje..."
                 className="flex-1"
               />

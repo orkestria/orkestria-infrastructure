@@ -55,10 +55,11 @@ const CTA = () => {
             {/* Formulario */}
             <div className="neu-card p-8 mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="mb-6">
-                <label className="block text-lg font-display font-semibold mb-4 text-foreground animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                <label htmlFor="company-info" className="block text-lg font-display font-semibold mb-4 text-foreground animate-fade-in" style={{ animationDelay: '0.3s' }}>
                   ¿Qué hace tu empresa? ✨
                 </label>
                 <textarea
+                  id="company-info"
                   value={companyInfo}
                   onChange={(e) => setCompanyInfo(e.target.value)}
                   placeholder="Cuéntanos sobre tu empresa y cómo podemos ayudarte..."

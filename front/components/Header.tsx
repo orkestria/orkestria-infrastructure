@@ -54,9 +54,7 @@ const Header = () => {
         // Activar animación cuando aparece por primera vez con delay
         if (!showIndicator && activeSection) {
           // Pequeño delay para asegurar que el navegador registra el estado inicial
-          requestAnimationFrame(() => {
-            setTimeout(() => setShowIndicator(true), 50);
-          });
+          requestAnimationFrame(() => setShowIndicator(true));
         }
       } else if (showIndicator) {
         // Resetear si no hay sección activa

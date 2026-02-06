@@ -1,6 +1,6 @@
 "use client";
 
-import { Bot, Linkedin, Instagram, MessageCircle } from "lucide-react";
+import { Bot, ExternalLink, Camera, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -28,12 +28,12 @@ const Footer = () => {
             <h4 className="font-display font-semibold mb-4">Síguenos</h4>
             <div className="flex gap-3">
               {[
-                { icon: Linkedin, href: '#' },
-                { icon: Instagram, href: '#' },
-                { icon: MessageCircle, href: '#' },
-              ].map((social, index) => (
-                <a 
-                  key={index} 
+                { icon: ExternalLink, href: '#', label: 'linkedin' },
+                { icon: Camera, href: '#', label: 'instagram' },
+                { icon: MessageCircle, href: '#', label: 'whatsapp' },
+              ].map((social) => (
+                <a
+                  key={social.label}
                   href={social.href}
                   className="neu-card-sm p-2.5 hover:-translate-y-1 transition-all duration-300"
                 >
@@ -48,9 +48,9 @@ const Footer = () => {
         <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
           <p>© 2026 OrkestrIA. Todos los derechos reservados.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-primary transition-colors">Privacidad</a>
-            <a href="#" className="hover:text-primary transition-colors">Términos</a>
-            <a href="#" className="hover:text-primary transition-colors">Cookies</a>
+            <button type="button" className="hover:text-primary transition-colors">Privacidad</button>
+            <button type="button" className="hover:text-primary transition-colors">Términos</button>
+            <button type="button" className="hover:text-primary transition-colors">Cookies</button>
           </div>
         </div>
       </div>

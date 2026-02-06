@@ -51,11 +51,10 @@ const Services = () => {
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div 
-              key={index}
+          {services.map((service) => (
+            <div
+              key={service.title}
               className="neu-card p-8 animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Icon */}
               <div className="neu-pressed w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
