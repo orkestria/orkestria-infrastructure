@@ -35,7 +35,13 @@ console.log('Contexto cargado:', CONTEXT);
 const MODEL = 'gpt-4o-mini';
 
 // Middleware
-app.use(cors());
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',')
+  : ['http://localhost:3000'];
+
+app.use(cors({
+  origin: allowedOrigins,
+}));
 app.use(express.json());
 
 // Ruta de prueba

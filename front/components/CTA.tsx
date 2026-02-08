@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Phone, Bot } from "lucide-react";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001';
+
 const CTA = () => {
   const [showResponse, setShowResponse] = useState(false);
   const [companyInfo, setCompanyInfo] = useState("");
@@ -12,10 +14,10 @@ const CTA = () => {
 
   const handleContinue = async () => {
     if (!companyInfo.trim()) return;
-    
+
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/asistente', {
+      const response = await fetch(`${API_BASE_URL}/api/asistente`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
