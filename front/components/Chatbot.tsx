@@ -70,7 +70,7 @@ const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
     } else if (input.includes("servicios") || input.includes("precio")) {
       return "Ofrecemos consultoría IA, automatización, chatbots, análisis de datos y desarrollo web. ¿Te gustaría información específica sobre algún servicio?";
     } else if (input.includes("contacto") || input.includes("email") || input.includes("teléfono")) {
-      return "Puedes contactarnos en hola@orkestria.com o llamarnos al +34 900 123 456. ¿Prefieres que te contactemos nosotros?";
+      return "Puedes contactarnos en orkestria.contacto@gmail.com o llamarnos al +34 629015344. ¿Prefieres que te contactemos nosotros?";
     } else if (input.includes("hola") || input.includes("buenos")) {
       return "¡Hola! 😊 Estoy aquí para ayudarte a agendar una consulta o resolver tus dudas sobre nuestros servicios.";
     } else if (input.includes("gracias")) {

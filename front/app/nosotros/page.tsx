@@ -92,7 +92,7 @@ export default function Nosotros() {
           </div>
         </section>
 
-        {/* Equipo */}
+        {/* Equipo .*/}
         <section className="px-6 py-16 relative">
           <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
           

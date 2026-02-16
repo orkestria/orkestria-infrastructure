@@ -104,13 +104,13 @@ const CTA = () => {
                 <div className="neu-card-sm p-2.5">
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
-                <span className="font-medium">hola@orkestria.com</span>
+                <span className="font-medium">orkestria.contacto@gmail.com</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="neu-card-sm p-2.5">
                   <Phone className="w-5 h-5 text-primary" />
                 </div>
-                <span className="font-medium">+34 900 123 456</span>
+                <span className="font-medium">+ 34 629015344</span>
               </div>
             </div>
           </div>
