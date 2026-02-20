@@ -1,5 +1,19 @@
+import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import { Users, Target, Award, Lightbulb } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Sobre Nosotros",
+  description: "Somos una startup tecnológica nacida en Madrid especializada en IA. Transformamos empresas con soluciones de automatización, chatbots y consultoría de inteligencia artificial.",
+  alternates: {
+    canonical: "https://orkestria-infrastructure.vercel.app/nosotros",
+  },
+  openGraph: {
+    title: "Sobre Nosotros | OrkestrIA",
+    description: "Somos una startup tecnológica nacida en Madrid especializada en IA. Transformamos empresas con soluciones de automatización, chatbots y consultoría de inteligencia artificial.",
+    url: "https://orkestria-infrastructure.vercel.app/nosotros",
+  },
+};
 
 export default function Nosotros() {
   return (

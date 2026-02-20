@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { X, Send, Bot, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import ReactMarkdown from "react-markdown";
 
 interface Message {
   id: number;
@@ -66,8 +67,11 @@ const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
         body: JSON.stringify({ message: text }),
       });
 
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
       const data = await response.json();
-      const botText = data.status === 'ok'
+      const botText = data.status === 'ok' && typeof data.message === 'string'
         ? data.message
         : 'Lo siento, ha ocurrido un error. Inténtalo de nuevo.';
 
@@ -148,7 +152,13 @@ const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
                       : ""
                   }`}
                 >
-                  <p className="text-sm leading-relaxed">{message.text}</p>
+                  {message.sender === "bot" ? (
+                    <div className="text-sm leading-relaxed prose prose-sm prose-invert max-w-none [&>p]:mb-2 [&>ul]:mt-1 [&>ul]:pl-4 [&>ol]:mt-1 [&>ol]:pl-4 [&>li]:mb-1 [&>strong]:font-semibold">
+                      <ReactMarkdown>{message.text}</ReactMarkdown>
+                    </div>
+                  ) : (
+                    <p className="text-sm leading-relaxed">{message.text}</p>
+                  )}
                 </div>
               </div>
             ))}

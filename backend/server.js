@@ -70,6 +70,32 @@ app.get('/', (req, res) => {
   res.json({ message: 'Backend de OrkestrIA funcionando' });
 });
 
+// Patrones de prompt injection conocidos
+const INJECTION_PATTERNS = [
+  /ignora\s+(todas?\s+)?(tus\s+)?(instrucciones|reglas|sistema|contexto)/i,
+  /ignore\s+(all\s+)?(previous\s+)?(instructions?|rules?|system|context)/i,
+  /olvida\s+(tus\s+)?(instrucciones|rol|contexto)/i,
+  /forget\s+(your\s+)?(instructions?|role|context|system)/i,
+  /ahora\s+eres\s+/i,
+  /you\s+are\s+now\s+/i,
+  /actúa\s+como\s+/i,
+  /act\s+as\s+/i,
+  /pretend\s+(to\s+be|you\s+are)/i,
+  /jailbreak/i,
+  /\bDAN\b/,
+  /revela\s+(tu\s+)?(sistema|prompt|instrucciones)/i,
+  /reveal\s+(your\s+)?(system\s+prompt|instructions?)/i,
+  /muestra\s+(tu\s+)?(prompt|instrucciones|sistema)/i,
+  /override\s+(your\s+)?(instructions?|system)/i,
+  /<\s*system\s*>/i,
+  /\[INST\]/i,
+  /###\s*(system|instrucciones)/i,
+];
+
+function hasInjectionAttempt(text) {
+  return INJECTION_PATTERNS.some(pattern => pattern.test(text));
+}
+
 // Endpoint del asistente
 app.post('/api/asistente', aiLimiter, async (req, res) => {
   try {
@@ -82,15 +108,28 @@ app.post('/api/asistente', aiLimiter, async (req, res) => {
     }
     const userText = rawText.trim().slice(0, 2000) || 'Hola';
 
-    const completion = await openai.chat.completions.create({
-      model: MODEL,
-      messages: [
-        { role: 'system', content: CONTEXT },
-        { role: 'user', content: userText }
-      ],
-      temperature: 0.7,
-      max_tokens: 1000
-    });
+    // Detección de prompt injection
+    if (hasInjectionAttempt(userText)) {
+      return res.status(400).json({ status: 'error', message: 'Entrada no válida.' });
+    }
+
+    // Envolver el input del usuario en delimitadores claros (best practice anti-injection)
+    const safeUserMessage = `El usuario ha enviado el siguiente mensaje:\n<mensaje>\n${userText}\n</mensaje>\nResponde siguiendo estrictamente las instrucciones del sistema.`;
+
+    const completion = await Promise.race([
+      openai.chat.completions.create({
+        model: MODEL,
+        messages: [
+          { role: 'system', content: CONTEXT },
+          { role: 'user', content: safeUserMessage }
+        ],
+        temperature: 0.7,
+        max_tokens: 1000
+      }),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('timeout')), 30000)
+      )
+    ]);
 
     const text = completion.choices[0].message.content;
 

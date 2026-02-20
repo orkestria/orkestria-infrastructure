@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Phone, Bot } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001';
 
@@ -13,24 +14,27 @@ const CTA = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleContinue = async () => {
-    if (!companyInfo.trim()) return;
+    const text = companyInfo.trim().slice(0, 2000);
+    if (!text) return;
 
     setIsLoading(true);
     try {
       const response = await fetch(`${API_BASE_URL}/api/asistente`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ companyInfo }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ companyInfo: text }),
       });
-      
+
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
       const data = await response.json();
-      setBackendResponse(data.message);
+      const msg = data.status === 'ok' && typeof data.message === 'string'
+        ? data.message
+        : 'Lo siento, ha ocurrido un error. Inténtalo de nuevo.';
+      setBackendResponse(msg);
       setShowResponse(true);
-    } catch (error) {
-      console.error('Error al conectar con el backend:', error);
-      setBackendResponse('Error al conectar con el servidor.');
+    } catch {
+      setBackendResponse('No he podido conectar con el servidor. Inténtalo de nuevo.');
       setShowResponse(true);
     } finally {
       setIsLoading(false);
@@ -67,6 +71,7 @@ const CTA = () => {
                   placeholder="Cuéntanos sobre tu empresa y cómo podemos ayudarte..."
                   className="w-full p-4 rounded-2xl border-2 border-border bg-background focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-h-[120px] resize-none shadow-neu-sm hover:shadow-neu animate-fade-in"
                   style={{ animationDelay: '0.4s' }}
+                  maxLength={2000}
                 />
               </div>
               
@@ -90,9 +95,11 @@ const CTA = () => {
                   <div className="neu-card-sm p-2 bg-primary/10 flex-shrink-0">
                     <Bot className="w-6 h-6 text-primary" />
                   </div>
-                  <div>
+                  <div className="text-left">
                     <h3 className="font-display font-bold text-lg mb-2">Respuesta del Asistente</h3>
-                    <p className="text-muted-foreground leading-relaxed">{backendResponse}</p>
+                    <div className="text-muted-foreground leading-relaxed prose prose-sm max-w-none [&>p]:mb-2 [&>ul]:mt-1 [&>ul]:pl-4 [&>ol]:mt-1 [&>ol]:pl-4 [&>li]:mb-1 [&>strong]:font-semibold [&>strong]:text-foreground">
+                      <ReactMarkdown>{backendResponse}</ReactMarkdown>
+                    </div>
                   </div>
                 </div>
               </div>
