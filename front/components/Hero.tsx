@@ -1,9 +1,28 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 
+const TYPED_TEXT = "Inteligencia Artificial";
+
 const Hero = () => {
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      i++;
+      setDisplayed(TYPED_TEXT.slice(0, i));
+      if (i === TYPED_TEXT.length) {
+        clearInterval(interval);
+        setDone(true);
+      }
+    }, 60);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="min-h-screen flex items-center justify-center pt-20 pb-16 px-6 relative overflow-hidden">
       {/* Background decorative elements */}
@@ -25,7 +44,12 @@ const Hero = () => {
           {/* Main Heading */}
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
             Transforma tu empresa con{' '}
-            <span className="text-gradient-navy">Inteligencia Artificial</span>
+            <span className="text-gradient-navy">
+              {displayed}
+              {!done && (
+                <span className="inline-block w-[3px] h-[0.85em] bg-current align-middle ml-1 animate-pulse" />
+              )}
+            </span>
           </h1>
 
           {/* Subtitle */}

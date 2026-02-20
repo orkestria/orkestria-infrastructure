@@ -112,6 +112,17 @@ const CTA = () => {
                 </div>
                 <span className="font-medium">+ 34 629015344</span>
               </div>
+              <a
+                href="https://www.instagram.com/orkestria.tech?igsh=cnZsendqbm1waWUx&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="neu-card-sm p-2.5">
+                  <img src="/icons/instagram.png" alt="Instagram" className="w-5 h-5 object-contain" />
+                </div>
+                <span className="font-medium">@orkestria.tech</span>
+              </a>
             </div>
           </div>
         </div>

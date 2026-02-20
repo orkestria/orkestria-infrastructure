@@ -1,6 +1,6 @@
 "use client";
 
-import { Bot, ExternalLink, Camera, MessageCircle } from "lucide-react";
+import { Bot, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -27,19 +27,30 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-semibold mb-4">Síguenos</h4>
             <div className="flex gap-3">
-              {[
-                { icon: ExternalLink, href: '#', label: 'linkedin' },
-                { icon: Camera, href: '#', label: 'instagram' },
-                { icon: MessageCircle, href: '#', label: 'whatsapp' },
-              ].map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="neu-card-sm p-2.5 hover:-translate-y-1 transition-all duration-300"
-                >
-                  <social.icon className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
-                </a>
-              ))}
+              <a
+                href="https://www.linkedin.com/in/orkestria-undefined-99aa6b3a9/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="neu-card-sm p-2.5 hover:-translate-y-1 transition-all duration-300"
+              >
+                <img src="/icons/linkedin.png" alt="LinkedIn" className="w-5 h-5 object-contain" />
+              </a>
+              <a
+                href="https://wa.me/34629015344"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="neu-card-sm p-2.5 hover:-translate-y-1 transition-all duration-300"
+              >
+                <MessageCircle className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
+              </a>
+              <a
+                href="https://www.instagram.com/orkestria.tech?igsh=cnZsendqbm1waWUx&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="neu-card-sm p-2.5 hover:-translate-y-1 transition-all duration-300"
+              >
+                <img src="/icons/instagram.png" alt="Instagram" className="w-5 h-5 object-contain" />
+              </a>
             </div>
           </div>
         </div>
@@ -47,11 +58,6 @@ const Footer = () => {
         {/* Bottom */}
         <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
           <p>© 2026 OrkestrIA. Todos los derechos reservados.</p>
-          <div className="flex gap-6">
-            <button type="button" className="hover:text-primary transition-colors">Privacidad</button>
-            <button type="button" className="hover:text-primary transition-colors">Términos</button>
-            <button type="button" className="hover:text-primary transition-colors">Cookies</button>
-          </div>
         </div>
       </div>
     </footer>
