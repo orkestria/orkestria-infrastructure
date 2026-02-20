@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X, Send, Bot, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +17,8 @@ interface ChatbotProps {
   initialMessage?: string;
 }
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001';
+
 const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -26,57 +28,62 @@ const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
     },
   ]);
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
-  // Agregar mensaje inicial del backend cuando se recibe
   useEffect(() => {
     if (initialMessage && isOpen) {
-      const backendMessage: Message = {
+      setMessages(prev => [...prev, {
         id: Date.now(),
         text: initialMessage,
         sender: "bot",
-      };
-      setMessages(prev => [...prev, backendMessage]);
+      }]);
     }
   }, [initialMessage, isOpen]);
 
-  const handleSendMessage = () => {
-    if (!inputValue.trim()) return;
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  const handleSendMessage = async () => {
+    const text = inputValue.trim();
+    if (!text || isLoading) return;
 
     const userMessage: Message = {
-      id: messages.length + 1,
-      text: inputValue,
+      id: Date.now(),
+      text,
       sender: "user",
     };
 
-    setMessages([...messages, userMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setInputValue("");
+    setIsLoading(true);
 
-    // Simular respuesta del bot
-    setTimeout(() => {
-      const botMessage: Message = {
-        id: messages.length + 2,
-        text: getBotResponse(inputValue),
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/asistente`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text }),
+      });
+
+      const data = await response.json();
+      const botText = data.status === 'ok'
+        ? data.message
+        : 'Lo siento, ha ocurrido un error. Inténtalo de nuevo.';
+
+      setMessages(prev => [...prev, {
+        id: Date.now(),
+        text: botText,
         sender: "bot",
-      };
-      setMessages((prev) => [...prev, botMessage]);
-    }, 1000);
-  };
-
-  const getBotResponse = (userInput: string): string => {
-    const input = userInput.toLowerCase();
-    
-    if (input.includes("consulta") || input.includes("agendar")) {
-      return "Perfecto! Para agendar una consulta, necesito algunos datos. ¿Cuál es tu nombre y empresa?";
-    } else if (input.includes("servicios") || input.includes("precio")) {
-      return "Ofrecemos consultoría IA, automatización, chatbots, análisis de datos y desarrollo web. ¿Te gustaría información específica sobre algún servicio?";
-    } else if (input.includes("contacto") || input.includes("email") || input.includes("teléfono")) {
-      return "Puedes contactarnos en orkestria.contacto@gmail.com o llamarnos al +34 629015344. ¿Prefieres que te contactemos nosotros?";
-    } else if (input.includes("hola") || input.includes("buenos")) {
-      return "¡Hola! 😊 Estoy aquí para ayudarte a agendar una consulta o resolver tus dudas sobre nuestros servicios.";
-    } else if (input.includes("gracias")) {
-      return "¡De nada! Estoy aquí para ayudarte. ¿Hay algo más que necesites?";
-    } else {
-      return "Entiendo. Te puedo ayudar a agendar una consulta gratuita, informarte sobre nuestros servicios o contactarte con nuestro equipo. ¿Qué prefieres?";
+      }]);
+    } catch {
+      setMessages(prev => [...prev, {
+        id: Date.now(),
+        text: 'No he podido conectar con el servidor. Inténtalo de nuevo.',
+        sender: "bot",
+      }]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -145,6 +152,21 @@ const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
                 </div>
               </div>
             ))}
+            {isLoading && (
+              <div className="flex gap-3 animate-fade-in">
+                <div className="neu-card-sm p-2 w-8 h-8 flex items-center justify-center flex-shrink-0 bg-primary/10">
+                  <Bot className="w-4 h-4 text-primary" />
+                </div>
+                <div className="neu-card p-3">
+                  <span className="flex gap-1">
+                    <span className="w-2 h-2 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-2 h-2 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-2 h-2 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  </span>
+                </div>
+              </div>
+            )}
+            <div ref={bottomRef} />
           </div>
 
           {/* Input */}
@@ -156,12 +178,15 @@ const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
                 onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
                 placeholder="Escribe tu mensaje..."
                 className="flex-1"
+                disabled={isLoading}
+                maxLength={2000}
               />
               <Button
                 onClick={handleSendMessage}
                 variant="neuPrimary"
                 size="icon"
                 className="flex-shrink-0"
+                disabled={isLoading}
               >
                 <Send className="w-4 h-4" />
               </Button>
