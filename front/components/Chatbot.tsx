@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { X, Send, Bot, User } from "lucide-react";
+import { X, Send, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ReactMarkdown from "react-markdown";
@@ -94,65 +94,66 @@ const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
 
   return (
     <>
-      {/* Overlay */}
+      {/* Overlay — solo visible en desktop */}
       <button
         type="button"
         aria-label="Cerrar chat"
-        className="fixed inset-0 w-full h-full bg-black/50 backdrop-blur-sm z-50 animate-fade-in border-none cursor-default"
+        className="hidden sm:block fixed inset-0 w-full h-full bg-black/50 backdrop-blur-sm z-50 animate-fade-in border-none cursor-default"
         onClick={onClose}
       />
 
-      {/* Chatbot Container */}
-      <div className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 w-full sm:w-96 h-[600px] sm:h-[650px] z-50 animate-slide-in-right">
-        <div className="neu-card h-full flex flex-col bg-background rounded-t-2xl sm:rounded-2xl overflow-hidden shadow-2xl">
+      {/* Chatbot Container — full screen en móvil, flotante en desktop */}
+      <div className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 sm:w-96 sm:h-[650px] z-50 animate-fade-in">
+        <div className="h-full flex flex-col bg-background sm:rounded-2xl overflow-hidden shadow-2xl sm:neu-card">
           {/* Header */}
-          <div className="gradient-navy p-4 flex items-center justify-between">
+          <div className="gradient-navy px-4 py-3 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="neu-card-sm p-2 bg-white/10">
-                <Bot className="w-6 h-6 text-white" />
+                <img src="/favicon.svg" alt="OrkestrIA" className="w-5 h-5 brightness-0 invert" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-white">OrkestrIA</h3>
+                <h3 className="font-display font-bold text-white text-sm">OrkestrIA</h3>
                 <span className="text-xs text-white/80">Asistente Virtual</span>
               </div>
             </div>
             <button
               onClick={onClose}
               className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+              aria-label="Cerrar"
             >
               <X className="w-5 h-5 text-white" />
             </button>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 overscroll-contain">
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex gap-3 animate-fade-in ${
+                className={`flex gap-2 animate-fade-in ${
                   message.sender === "user" ? "flex-row-reverse" : ""
                 }`}
               >
                 <div
-                  className={`neu-card-sm p-2 w-8 h-8 flex items-center justify-center flex-shrink-0 ${
+                  className={`neu-card-sm p-1.5 w-7 h-7 flex items-center justify-center flex-shrink-0 mt-1 ${
                     message.sender === "bot" ? "bg-primary/10" : "bg-accent/10"
                   }`}
                 >
                   {message.sender === "bot" ? (
-                    <Bot className="w-4 h-4 text-primary" />
+                    <img src="/favicon.svg" alt="OrkestrIA" className="w-3.5 h-3.5" />
                   ) : (
-                    <User className="w-4 h-4 text-accent" />
+                    <User className="w-3.5 h-3.5 text-accent" />
                   )}
                 </div>
                 <div
-                  className={`neu-card p-3 max-w-[75%] ${
+                  className={`neu-card p-3 max-w-[80%] ${
                     message.sender === "user"
                       ? "bg-gradient-navy-light text-white"
                       : ""
                   }`}
                 >
                   {message.sender === "bot" ? (
-                    <div className="text-sm leading-relaxed prose prose-sm prose-invert max-w-none [&>p]:mb-2 [&>ul]:mt-1 [&>ul]:pl-4 [&>ol]:mt-1 [&>ol]:pl-4 [&>li]:mb-1 [&>strong]:font-semibold">
+                    <div className="text-sm leading-relaxed prose prose-sm prose-invert max-w-none [&>p]:mb-2 [&>p:last-child]:mb-0 [&>ul]:mt-1 [&>ul]:pl-4 [&>ol]:mt-1 [&>ol]:pl-4 [&>li]:mb-1 [&>strong]:font-semibold">
                       <ReactMarkdown>{message.text}</ReactMarkdown>
                     </div>
                   ) : (
@@ -162,12 +163,12 @@ const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
               </div>
             ))}
             {isLoading && (
-              <div className="flex gap-3 animate-fade-in">
-                <div className="neu-card-sm p-2 w-8 h-8 flex items-center justify-center flex-shrink-0 bg-primary/10">
-                  <Bot className="w-4 h-4 text-primary" />
+              <div className="flex gap-2 animate-fade-in">
+                <div className="neu-card-sm p-1.5 w-7 h-7 flex items-center justify-center flex-shrink-0 mt-1 bg-primary/10">
+                  <img src="/favicon.svg" alt="OrkestrIA" className="w-3.5 h-3.5" />
                 </div>
                 <div className="neu-card p-3">
-                  <span className="flex gap-1">
+                  <span className="flex gap-1 items-center">
                     <span className="w-2 h-2 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                     <span className="w-2 h-2 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                     <span className="w-2 h-2 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
@@ -179,14 +180,14 @@ const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-border/50">
+          <div className="p-3 border-t border-border/50 flex-shrink-0 bg-background pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
             <div className="flex gap-2">
               <Input
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
                 placeholder="Escribe tu mensaje..."
-                className="flex-1"
+                className="flex-1 text-base"
                 disabled={isLoading}
                 maxLength={2000}
               />
@@ -194,7 +195,7 @@ const Chatbot = ({ isOpen, onClose, initialMessage }: ChatbotProps) => {
                 onClick={handleSendMessage}
                 variant="neuPrimary"
                 size="icon"
-                className="flex-shrink-0"
+                className="flex-shrink-0 w-10 h-10"
                 disabled={isLoading}
               >
                 <Send className="w-4 h-4" />

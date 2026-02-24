@@ -262,6 +262,39 @@
   .glow-blue {
     filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
   }
+
+  /* Mobile menu animations */
+  @keyframes menu-open {
+    0% {
+      transform: scaleY(0.9) translateY(-6px);
+      opacity: 0;
+    }
+    100% {
+      transform: scaleY(1) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes menu-close {
+    0% {
+      transform: scaleY(1) translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scaleY(0.9) translateY(-6px);
+      opacity: 0;
+    }
+  }
+
+  .animate-liquid-open {
+    animation: menu-open 0.2s ease-out forwards;
+    transform-origin: top center;
+  }
+
+  .animate-menu-close {
+    animation: menu-close 0.18s ease-in forwards;
+    transform-origin: top center;
+  }
 }
 
 @layer utilities {

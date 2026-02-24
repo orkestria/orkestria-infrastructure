@@ -8,6 +8,7 @@ import Link from "next/link";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
   const [showIndicator, setShowIndicator] = useState(false);
@@ -135,9 +136,16 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="md:hidden neu-card-sm p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => {
+              if (isMenuOpen) {
+                setIsClosing(true);
+                setTimeout(() => { setIsMenuOpen(false); setIsClosing(false); }, 170);
+              } else {
+                setIsMenuOpen(true);
+              }
+            }}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -145,7 +153,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 neu-card p-6 animate-fade-in">
+          <div className={`md:hidden mt-4 neu-card p-6 overflow-hidden ${isClosing ? 'animate-menu-close' : 'animate-liquid-open'}`}>
             <div className="flex flex-col gap-4">
               <Link 
                 href="/#servicios" 
