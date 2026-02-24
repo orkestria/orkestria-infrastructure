@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Phone, Bot } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001';
 
 const CTA = () => {
   const [showResponse, setShowResponse] = useState(false);
@@ -19,7 +18,7 @@ const CTA = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/api/asistente`, {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ companyInfo: text }),
