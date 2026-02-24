@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
 });
 
-const BASE_URL = 'https://orkestria-infrastructure.vercel.app';
+const BASE_URL = 'https://orkestria.es';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

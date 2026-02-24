@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://orkestria-infrastructure.vercel.app/sitemap.xml
+Sitemap: https://orkestria.es/sitemap.xml

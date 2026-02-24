@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://orkestria-infrastructure.vercel.app'
+  const base = 'https://orkestria.es'
 
   return [
     {
