@@ -73,7 +73,16 @@ const Header = () => {
       <div className="container mx-auto px-6 py-4">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 cursor-pointer">
+          <Link
+            href="/"
+            className="flex items-center gap-3 cursor-pointer"
+            onClick={(e) => {
+              if (pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+          >
             <div className="neu-card-sm p-2.5">
               <Bot className="w-6 h-6 text-primary" />
             </div>

@@ -7,7 +7,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Header from "@/components/Header";
 import PageTransition from "@/components/PageTransition";
 import CookieBanner from "@/components/CookieBanner";
-import ChatWidget from "@/components/ChatWidget";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -128,7 +127,6 @@ export default function RootLayout({
             {children}
           </PageTransition>
           <CookieBanner />
-          <ChatWidget />
         </TooltipProvider>
       </body>
     </html>
