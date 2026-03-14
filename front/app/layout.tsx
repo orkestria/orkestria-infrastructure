@@ -41,20 +41,11 @@ export const metadata: Metadata = {
     siteName: "OrkestrIA",
     title: "OrkestrIA - Consultoría IT & Automatización con IA",
     description: "Orquestamos soluciones tecnológicas inteligentes para automatizar procesos, optimizar operaciones y potenciar el crecimiento de tu negocio con IA.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "OrkestrIA - Consultoría IT & Automatización con IA",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "OrkestrIA - Consultoría IT & Automatización con IA",
     description: "Orquestamos soluciones tecnológicas inteligentes para automatizar procesos, optimizar operaciones y potenciar el crecimiento de tu negocio con IA.",
-    images: ["/og-image.png"],
   },
   verification: {
     google: "ehBs94X5xoIfYFCQroH5vCp7xzOuCDGS1uRkEKUqCcQ",
@@ -85,7 +76,7 @@ const jsonLd = {
       },
       "sameAs": [
         "https://www.instagram.com/orkestria.tech",
-        "https://www.linkedin.com/in/orkestria-undefined-99aa6b3a9/",
+        "https://www.linkedin.com/company/orkestria",
       ],
     },
     {

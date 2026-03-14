@@ -1,6 +1,7 @@
 "use client";
 
 import { Bot, MessageCircle } from "lucide-react";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -28,12 +29,12 @@ const Footer = () => {
             <h4 className="font-display font-semibold mb-4">Síguenos</h4>
             <div className="flex gap-3">
               <a
-                href="https://www.linkedin.com/in/orkestria-undefined-99aa6b3a9/"
+                href="https://www.linkedin.com/company/orkestria"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="neu-card-sm p-2.5 hover:-translate-y-1 transition-all duration-300"
               >
-                <img src="/icons/linkedin.png" alt="LinkedIn" className="w-5 h-5 object-contain" />
+                <Image src="/icons/linkedin.png" alt="LinkedIn" width={20} height={20} className="object-contain" />
               </a>
               <a
                 href="https://wa.me/34629015344"
@@ -49,7 +50,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="neu-card-sm p-2.5 hover:-translate-y-1 transition-all duration-300"
               >
-                <img src="/icons/instagram.png" alt="Instagram" className="w-5 h-5 object-contain" />
+                <Image src="/icons/instagram.png" alt="Instagram" width={20} height={20} className="object-contain" />
               </a>
             </div>
           </div>

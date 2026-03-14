@@ -138,6 +138,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             className="md:hidden neu-card-sm p-2"
+            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
             onClick={() => {
               if (isMenuOpen) {
                 setIsClosing(true);
