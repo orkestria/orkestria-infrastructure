@@ -24,25 +24,25 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 pb-16 px-6 relative overflow-hidden">
+    <section className="flex items-start justify-center pt-32 pb-52 px-6 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 left-10 w-[30rem] h-[30rem] bg-accent/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
       </div>
 
       <div className="container mx-auto relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 neu-card-sm px-4 py-2 mb-8 animate-fade-in">
-            <Sparkles className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium text-muted-foreground">
+          <div className="inline-flex items-center gap-2 neu-card-sm px-5 py-2.5 mb-10 animate-fade-in">
+            <Sparkles className="w-5 h-5 text-accent" />
+            <span className="text-base font-medium text-muted-foreground">
               Consultoría IT & Automatización con IA
             </span>
           </div>
 
           {/* Main Heading */}
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 animate-fade-in" style={{ animationDelay: '0.1s' }}>
             Transforma tu empresa con{' '}
             <span className="text-gradient-navy">
               {displayed}
@@ -53,8 +53,8 @@ const Hero = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Orquestamos soluciones tecnológicas inteligentes para automatizar procesos, 
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            Orquestamos soluciones tecnológicas inteligentes para automatizar procesos,
             optimizar operaciones y potenciar el crecimiento de tu negocio.
           </p>
 
@@ -74,15 +74,19 @@ const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
             {[
-              { value: '150+', label: 'Proyectos' },
-              { value: '50+', label: 'Empresas' },
-              { value: '95%', label: 'Satisfacción' },
+              { value: '100%', label: 'Personalizado' },
+              { value: 'IA', label: 'Tecnología punta' },
               { value: '24/7', label: 'Soporte' },
-            ].map((stat) => (
-              <div key={stat.label} className="neu-card-sm p-6 text-center">
-                <div className="font-display text-3xl md:text-4xl font-bold text-gradient-navy mb-1">
+              { value: '∞', label: 'Escalabilidad' },
+            ].map((stat, i) => (
+              <div
+                key={stat.label}
+                className="neu-card-sm p-7 text-center animate-stat-in"
+                style={{ animationDelay: `${0.5 + i * 0.15}s` }}
+              >
+                <div className="font-display text-4xl md:text-5xl font-bold text-gradient-navy mb-1">
                   {stat.value}
                 </div>
                 <div className="text-sm text-muted-foreground font-medium">

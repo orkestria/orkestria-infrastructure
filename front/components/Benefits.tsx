@@ -1,6 +1,7 @@
 "use client";
 
 import { Check, TrendingUp, Clock, Users } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const benefits = [
   {
@@ -29,23 +30,25 @@ const features = [
 
 const Benefits = () => {
   return (
-    <section id="beneficios" className="py-24 px-6 relative">
+    <section id="beneficios" className="py-72 px-6 relative">
       {/* Background accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
-      
+
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column - Benefits Cards */}
           <div className="space-y-6">
-            <h2 className="font-display text-3xl md:text-5xl font-bold mb-8">
-              ¿Por qué elegir{' '}
-              <span className="text-gradient-navy">OrkestrIA</span>?
-            </h2>
+            <ScrollReveal>
+              <h2 className="font-display text-3xl md:text-5xl font-bold mb-8">
+                ¿Por qué elegir{' '}
+                <span className="text-gradient-navy">OrkestrIA</span>?
+              </h2>
+            </ScrollReveal>
 
-            {benefits.map((benefit) => (
+            {benefits.map((benefit, i) => (
+              <ScrollReveal key={benefit.title} delay={i * 100}>
               <div
-                key={benefit.title}
-                className="neu-card p-6 flex gap-5 animate-fade-in"
+                className="neu-card p-6 flex gap-5"
               >
                 <div className="gradient-navy w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
                   <benefit.icon className="w-7 h-7 text-primary-foreground" />
@@ -59,11 +62,13 @@ const Benefits = () => {
                   </p>
                 </div>
               </div>
+              </ScrollReveal>
             ))}
           </div>
 
           {/* Right Column - Features List */}
-          <div className="neu-card p-10 animate-slide-in-right">
+          <ScrollReveal direction="right">
+          <div className="neu-card p-10">
             <h3 className="font-display text-2xl font-bold mb-8">
               Todo lo que necesitas
             </h3>
@@ -79,6 +84,7 @@ const Benefits = () => {
               ))}
             </div>
           </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

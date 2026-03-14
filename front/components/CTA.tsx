@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Phone } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import ScrollReveal from "./ScrollReveal";
 
 
 const CTA = () => {
@@ -41,8 +42,9 @@ const CTA = () => {
   };
 
   return (
-    <section id="nosotros" className="py-16 sm:py-24 px-3 sm:px-6">
+    <section id="nosotros" className="py-56 sm:py-72 px-3 sm:px-6">
       <div className="container mx-auto">
+        <ScrollReveal>
         <div className="neu-card p-4 sm:p-10 md:p-16 text-center relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
@@ -126,6 +128,7 @@ const CTA = () => {
             </div>
           </div>
         </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -301,4 +301,30 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Stat cards staggered entrance */
+  @keyframes stat-in {
+    0%   { opacity: 0; transform: translateY(28px) scale(0.92); }
+    60%  { opacity: 1; transform: translateY(-4px) scale(1.03); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .animate-stat-in {
+    opacity: 0;
+    animation: stat-in 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  /* Scroll reveal */
+  .reveal-hidden {
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal-up    { transform: translateY(40px); }
+  .reveal-left  { transform: translateX(-40px); }
+  .reveal-right { transform: translateX(40px); }
+
+  .reveal-visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

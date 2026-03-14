@@ -57,7 +57,7 @@ const limiter = rateLimit({
 // Rate limiting más estricto para el endpoint de IA
 const aiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 20,
+  max: 10,
   standardHeaders: true,
   legacyHeaders: false,
   message: { status: 'error', message: 'Límite de consultas alcanzado. Inténtalo más tarde.' }
