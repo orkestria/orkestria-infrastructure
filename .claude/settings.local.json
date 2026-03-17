@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(node -e:*)",
-      "Bash(powershell -Command \"Get-ChildItem -Filter ''*.tsx'' | ForEach-Object { \\(Get-Content $_FullName -Raw\\) -replace ''React\\\\.ElementRef'', ''React.ComponentRef'' | Set-Content $_FullName -NoNewline }\")"
+      "Bash(powershell -Command \"Get-ChildItem -Filter ''*.tsx'' | ForEach-Object { \\(Get-Content $_FullName -Raw\\) -replace ''React\\\\.ElementRef'', ''React.ComponentRef'' | Set-Content $_FullName -NoNewline }\")",
+      "Bash(npx tsc:*)",
+      "Bash(./node_modules/.bin/tsc:*)",
+      "Bash(npm run:*)"
     ]
   }
 }

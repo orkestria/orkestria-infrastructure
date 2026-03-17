@@ -3,14 +3,21 @@ import Footer from "@/components/Footer";
 import { Users, Target, Award, Lightbulb } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Sobre Nosotros",
-  description: "Somos una startup tecnológica nacida en Madrid especializada en IA. Transformamos empresas con soluciones de automatización, chatbots y consultoría de inteligencia artificial.",
+  title: "Sobre OrkestrIA | Agencia de IA y Consultoría IT en Madrid",
+  description: "Conoce OrkestrIA: startup tecnológica de Madrid especializada en Inteligencia Artificial. Automatización, chatbots y consultoría IA para empresas en España y Europa.",
+  keywords: [
+    "orkestria empresa",
+    "agencia IA Madrid",
+    "quiénes somos OrkestrIA",
+    "startup inteligencia artificial Madrid",
+    "equipo consultoría IA España",
+  ],
   alternates: {
     canonical: "https://orkestria.es/nosotros",
   },
   openGraph: {
-    title: "Sobre Nosotros | OrkestrIA",
-    description: "Somos una startup tecnológica nacida en Madrid especializada en IA. Transformamos empresas con soluciones de automatización, chatbots y consultoría de inteligencia artificial.",
+    title: "Sobre OrkestrIA | Agencia de IA y Consultoría IT en Madrid",
+    description: "Conoce OrkestrIA: startup tecnológica de Madrid especializada en IA. Automatización, chatbots y consultoría para empresas en España y Europa.",
     url: "https://orkestria.es/nosotros",
   },
 };
