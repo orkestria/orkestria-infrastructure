@@ -7,6 +7,6 @@ RUN npm install --production
 
 COPY backend/ .
 
-EXPOSE 8000
+EXPOSE 3001
 
 CMD ["node", "server.js"]
