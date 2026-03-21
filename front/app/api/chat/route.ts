@@ -47,11 +47,17 @@ export async function POST(req: NextRequest) {
 
   const body = await req.json();
 
-  const response = await fetch(`${BACKEND_URL}/api/asistente`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
+  let response: Response;
+  try {
+    response = await fetch(`${BACKEND_URL}/api/asistente`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+  } catch (err) {
+    console.error('Error conectando al backend:', err);
+    return NextResponse.json({ status: 'error', message: 'No se pudo conectar al backend.' }, { status: 502 });
+  }
 
   const data = await response.json();
   return NextResponse.json(data, { status: response.status });
