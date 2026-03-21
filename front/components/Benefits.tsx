@@ -30,12 +30,12 @@ const features = [
 
 const Benefits = () => {
   return (
-    <section id="beneficios" className="py-72 px-6 relative">
+    <section id="beneficios" className="py-20 sm:py-36 lg:py-64 px-6 relative">
       {/* Background accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
 
       <div className="container mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left Column - Benefits Cards */}
           <div className="space-y-6">
             <ScrollReveal>

@@ -68,6 +68,13 @@ const Header = () => {
     return () => window.removeEventListener("resize", updateIndicator);
   }, [activeSection, showIndicator]);
 
+  const scrollToSection = (id: string) => (e: React.MouseEvent) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg">
       <div className="container mx-auto px-6 py-4">
@@ -111,18 +118,20 @@ const Header = () => {
                   }}
                 />
               )}
-              <Link 
+              <Link
                 ref={serviciosRef}
-                href="/#servicios" 
+                href="/#servicios"
+                onClick={scrollToSection("servicios")}
                 className={`relative z-10 px-5 py-2 rounded-xl font-medium transition-all duration-300 ${
                   activeSection === "servicios" ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 Servicios
               </Link>
-              <Link 
+              <Link
                 ref={beneficiosRef}
-                href="/#beneficios" 
+                href="/#beneficios"
+                onClick={scrollToSection("beneficios")}
                 className={`relative z-10 px-5 py-2 rounded-xl font-medium transition-all duration-300 ${
                   activeSection === "beneficios" ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
                 }`}
@@ -140,7 +149,7 @@ const Header = () => {
               </Link>
             </div>
             <Button variant="neu" size="lg" asChild>
-              <Link href="/#nosotros">Contactar</Link>
+              <Link href="/#nosotros" onClick={scrollToSection("nosotros")}>Contactar</Link>
             </Button>
           </div>
 
@@ -165,16 +174,18 @@ const Header = () => {
         {isMenuOpen && (
           <div className={`md:hidden mt-4 neu-card p-6 overflow-hidden ${isClosing ? 'animate-menu-close' : 'animate-liquid-open'}`}>
             <div className="flex flex-col gap-4">
-              <Link 
-                href="/#servicios" 
+              <Link
+                href="/#servicios"
+                onClick={scrollToSection("servicios")}
                 className={`font-medium py-2 transition-colors ${
                   activeSection === "servicios" ? "text-primary" : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 Servicios
               </Link>
-              <Link 
-                href="/#beneficios" 
+              <Link
+                href="/#beneficios"
+                onClick={scrollToSection("beneficios")}
                 className={`font-medium py-2 transition-colors ${
                   activeSection === "beneficios" ? "text-primary" : "text-muted-foreground hover:text-primary"
                 }`}
@@ -190,7 +201,7 @@ const Header = () => {
                 Nosotros
               </Link>
               <Button variant="neuPrimary" className="mt-2" asChild>
-                <Link href="/#nosotros">Contactar</Link>
+                <Link href="/#nosotros" onClick={scrollToSection("nosotros")}>Contactar</Link>
               </Button>
             </div>
           </div>

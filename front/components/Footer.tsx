@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="py-12 px-6 border-t border-border/50">
+    <footer className="py-8 sm:py-10 px-6 border-t border-border/50">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-3 gap-10 mb-10">
           {/* Brand */}

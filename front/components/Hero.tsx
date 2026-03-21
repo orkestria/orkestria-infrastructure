@@ -24,7 +24,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="flex items-start justify-center pt-32 pb-52 px-6 relative overflow-hidden">
+    <section className="flex items-start justify-center pt-16 pb-28 sm:pt-24 sm:pb-40 lg:pt-28 lg:pb-48 px-6 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
@@ -61,20 +61,26 @@ const Hero = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <Button variant="hero" size="xl" asChild>
-              <a href="#nosotros">
+              <a
+                href="#nosotros"
+                onClick={(e) => { e.preventDefault(); document.getElementById("nosotros")?.scrollIntoView({ behavior: "smooth", block: "center" }); }}
+              >
                 Solicitar Consulta
                 <ArrowRight className="w-5 h-5" />
               </a>
             </Button>
             <Button variant="neu" size="xl" asChild>
-              <a href="#servicios">
+              <a
+                href="#servicios"
+                onClick={(e) => { e.preventDefault(); document.getElementById("servicios")?.scrollIntoView({ behavior: "smooth", block: "center" }); }}
+              >
                 Ver Servicios
               </a>
             </Button>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-12 md:mt-20">
             {[
               { value: '100%', label: 'Personalizado', icon: SlidersHorizontal, desc: 'Soluciones a medida' },
               { value: 'IA', label: 'Tecnología punta', icon: Brain, desc: 'Modelos de última gen' },

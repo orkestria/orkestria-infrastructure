@@ -7,7 +7,8 @@
       "Bash(./node_modules/.bin/tsc:*)",
       "Bash(npm run:*)",
       "WebFetch(domain:www.koyebstatus.com)",
-      "WebFetch(domain:status.koyeb.com)"
+      "WebFetch(domain:status.koyeb.com)",
+      "Bash(npm install:*)"
     ]
   }
 }

@@ -35,9 +35,9 @@ export default function Home() {
 
 function SeoContent() {
   return (
-    <section className="py-24 px-6 border-t border-border/30">
+    <section className="py-12 sm:py-16 lg:py-20 px-6 border-t border-border/30">
       <div className="container mx-auto max-w-5xl">
-        <div className="prose prose-lg max-w-none text-muted-foreground space-y-10">
+        <div className="max-w-none text-muted-foreground space-y-10">
 
           {/* Bloque principal */}
           <div className="neu-card p-10">
