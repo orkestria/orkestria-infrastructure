@@ -1,24 +1,27 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
 
 export default function PageTransition({ children }: Readonly<{ children: React.ReactNode }>) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(false);
-  const [displayChildren, setDisplayChildren] = useState(children);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     setIsLoading(true);
-    
     const timeout = setTimeout(() => {
-      setDisplayChildren(children);
       setIsLoading(false);
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [pathname, children]);
+  }, [pathname]);
 
   return (
     <>
@@ -28,7 +31,7 @@ export default function PageTransition({ children }: Readonly<{ children: React.
         </div>
       )}
       <div className={isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-300"}>
-        {displayChildren}
+        {children}
       </div>
     </>
   );

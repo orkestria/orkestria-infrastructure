@@ -42,7 +42,7 @@ const CTA = () => {
   };
 
   return (
-    <section id="nosotros" className="py-16 sm:py-28 lg:py-52 xl:py-64 px-3 sm:px-6">
+    <section id="contacto" className="py-16 sm:py-28 lg:py-52 xl:py-64 px-3 sm:px-6">
       <div className="container mx-auto">
         <ScrollReveal>
         <div className="neu-card p-4 sm:p-10 md:p-16 text-center relative overflow-hidden">

@@ -24,7 +24,7 @@ const Header = () => {
     }
 
     const handleScroll = () => {
-      const sections = ["servicios", "beneficios", "nosotros"];
+      const sections = ["servicios", "beneficios", "contacto"];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -148,8 +148,8 @@ const Header = () => {
                 Nosotros
               </Link>
             </div>
-            <Button variant="neu" size="lg" asChild>
-              <Link href="/#nosotros" onClick={scrollToSection("nosotros")}>Contactar</Link>
+            <Button variant={activeSection === "contacto" ? "neuPrimary" : "neu"} size="lg" asChild>
+              <Link href="/#contacto" onClick={scrollToSection("contacto")}>Contactar</Link>
             </Button>
           </div>
 
@@ -201,7 +201,7 @@ const Header = () => {
                 Nosotros
               </Link>
               <Button variant="neuPrimary" className="mt-2" asChild>
-                <Link href="/#nosotros" onClick={scrollToSection("nosotros")}>Contactar</Link>
+                <Link href="/#contacto" onClick={scrollToSection("contacto")}>Contactar</Link>
               </Button>
             </div>
           </div>
