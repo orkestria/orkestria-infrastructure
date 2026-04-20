@@ -29,7 +29,7 @@ const Footer = () => {
             <h4 className="font-display font-semibold mb-4">Síguenos</h4>
             <div className="flex gap-3">
               <a
-                href="https://www.linkedin.com/company/orkestria"
+                href="https://www.linkedin.com/in/orkestria-consulting-99aa6b3a9/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="neu-card-sm p-2.5 hover:-translate-y-1 transition-all duration-300"

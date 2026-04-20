@@ -130,7 +130,7 @@ const jsonLd = {
       },
       "sameAs": [
         "https://www.instagram.com/orkestria.tech",
-        "https://www.linkedin.com/company/orkestria",
+        "https://www.linkedin.com/in/orkestria-consulting-99aa6b3a9/",
       ],
       "foundingLocation": {
         "@type": "Place",
