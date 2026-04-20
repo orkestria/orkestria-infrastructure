@@ -168,7 +168,7 @@ export default function Nosotros() {
               <div className="flex flex-wrap gap-4 justify-center text-sm text-muted-foreground">
                 <span className="neu-card-sm px-4 py-2">🇪🇸 Madrid, España</span>
                 <span className="neu-card-sm px-4 py-2">📧 orkestria.contacto@gmail.com</span>
-                <span className="neu-card-sm px-4 py-2">📞 +34 629015344</span>
+                <span className="neu-card-sm px-4 py-2">📞 +34 600 60 14 62</span>
               </div>
             </div>
           </div>

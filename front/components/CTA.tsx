@@ -114,7 +114,7 @@ const CTA = () => {
               </div>
               <div className="flex items-center justify-center gap-2 neu-card-sm px-3 py-2.5">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                <span className="font-medium text-sm">+34 629015344</span>
+                <span className="font-medium text-sm">+34 600 60 14 62</span>
               </div>
               <a
                 href="https://www.instagram.com/orkestria.tech?igsh=cnZsendqbm1waWUx&utm_source=qr"
