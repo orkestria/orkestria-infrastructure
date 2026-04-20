@@ -37,7 +37,7 @@ const Footer = () => {
                 <Image src="/icons/linkedin.png" alt="LinkedIn" width={20} height={20} className="object-contain" />
               </a>
               <a
-                href="https://wa.me/34629015344"
+                href="https://wa.me/34600601462"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="neu-card-sm p-2.5 hover:-translate-y-1 transition-all duration-300"
@@ -58,7 +58,7 @@ const Footer = () => {
 
         {/* Bottom */}
         <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>© 2026 OrkestrIA. Todos los derechos reservados.</p>
+          <p>© 2026 Orkestria Consulting SL. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
